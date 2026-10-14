@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Aetheria Luxury Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { 50: '#f4f6f8', 100: '#e1e7ec', 500: '#0f172a', 650: '#1e293b', 900: '#020617', accent: '#d97706', accentHover: '#b45309' } } } } }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+    <header class="sticky top-0 z-40 glass-nav border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-900 to-brand-accent flex items-center justify-center text-white shadow-lg"><i class="fa-solid fa-gem text-lg"></i></div>
+                <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-brand-900 to-brand-accent dark:from-white dark:to-brand-accent bg-clip-text text-transparent">AETHERIA</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="index.html" class="hover:text-brand-accent transition py-2">Home</a>
+                <a href="products.html" class="hover:text-brand-accent transition py-2">Products</a>
+                <a href="about.html" class="hover:text-brand-accent transition py-2">About Us</a>
+                <a href="contact.html" class="text-brand-accent font-semibold py-2">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"><i id="theme-icon" class="fa-solid fa-moon text-lg"></i></button>
+                <a href="cart.html" class="relative p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"><i class="fa-solid fa-bag-shopping text-lg"></i><span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-accent text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center scale-0 transition-transform">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow animate-fade-in max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16 w-full">
+        <div class="text-center max-w-2xl mx-auto space-y-4">
+            <span class="text-brand-accent font-semibold text-sm uppercase tracking-wider">Get in Touch</span>
+            <h1 class="text-4xl font-bold text-brand-900 dark:text-white">We Are Here to Assist You</h1>
+            <p class="text-gray-600 dark:text-gray-300">Whether you have an inquiry regarding an order, bespoke styling advice, or press requests, our concierge team is at your service.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="space-y-6">
+                <div class="bg-white dark:bg-brand-950 p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xl"><i class="fa-solid fa-location-dot"></i></div>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-lg">Global Headquarters</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">742 Evergreen Terrace, Suite 400<br>New York, NY 10022 USA</p>
+                </div>
+                <div class="bg-white dark:bg-brand-950 p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xl"><i class="fa-solid fa-envelope"></i></div>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-lg">Direct Email</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">concierge@aetheria.luxury<br>support@aetheria.luxury</p>
+                </div>
+            </div>
+            <div class="lg:col-span-2 bg-white dark:bg-brand-950 p-10 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                <form onsubmit="event.preventDefault(); showToast('Your message has been sent to our concierge team.'); event.target.reset();" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Your Name</label><input type="text" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                        <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Email Address</label><input type="email" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                    </div>
+                    <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Subject</label><input type="text" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                    <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Message</label><textarea rows="5" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent resize-none"></textarea></div>
+                    <button type="submit" class="w-full bg-brand-accent hover:bg-brand-accentHover text-white py-4 rounded-2xl font-semibold text-base transition shadow-lg">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white dark:bg-brand-950 border-t border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs flex justify-between">
+            <p>&copy; 2026 Aetheria Luxury Lifestyle Inc.</p>
+            <a href="index.html">Home</a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | Aetheria Luxury Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { 50: '#f4f6f8', 100: '#e1e7ec', 500: '#0f172a', 650: '#1e293b', 900: '#020617', accent: '#d97706', accentHover: '#b45309' } } } } }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+    <header class="sticky top-0 z-40 glass-nav border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-900 to-brand-accent flex items-center justify-center text-white shadow-lg"><i class="fa-solid fa-gem text-lg"></i></div>
+                <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-brand-900 to-brand-accent dark:from-white dark:to-brand-accent bg-clip-text text-transparent">AETHERIA</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"><i id="theme-icon" class="fa-solid fa-moon text-lg"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow animate-fade-in max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 w-full" id="checkout-container">
+        <!-- Injected via script -->
+    </main>
+
+    <footer class="bg-white dark:bg-brand-950 border-t border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 pt-16 pb-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs flex justify-between">
+            <p>&copy; 2026 Aetheria Luxury Lifestyle Inc.</p>
+            <a href="cart.html">Return to Bag</a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        function handleCheckout(e) {
+            e.preventDefault();
+            cart = [];
+            updateCartBadge();
+            showToast("Order placed successfully! Confirmation sent to your email.", "success");
+            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('checkout-container');
+            if (cart.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = 25.00;
+            const total = subtotal + shipping;
+
+            container.innerHTML = `
+                <div><span class="text-brand-accent font-semibold text-sm uppercase tracking-wider">Secure Checkout</span><h1 class="text-3xl font-bold text-brand-900 dark:text-white mt-1">Complete Your Order</h1></div>
+                <form onsubmit="handleCheckout(event)" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                    <div class="lg:col-span-2 space-y-8">
+                        <div class="bg-white dark:bg-brand-950 p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm space-y-6">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-lg flex items-center space-x-2"><i class="fa-solid fa-truck-fast text-brand-accent"></i><span>Shipping Address</span></h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">First Name</label><input type="text" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                                <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Last Name</label><input type="text" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                                <div class="sm:col-span-2"><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Street Address</label><input type="text" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                                <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">City</label><input type="text" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                                <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Postal Code</label><input type="text" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-brand-950 p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm space-y-6">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-lg flex items-center space-x-2"><i class="fa-solid fa-credit-card text-brand-accent"></i><span>Payment Details</span></h3>
+                            <div class="space-y-4">
+                                <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Card Number</label><input type="text" placeholder="4532 •••• •••• ••••" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Expiry Date</label><input type="text" placeholder="MM/YY" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                                    <div><label class="block text-xs font-semibold uppercase text-gray-500 mb-2">CVV Security</label><input type="password" placeholder="123" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-brand-950 p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm space-y-6 h-fit">
+                        <h3 class="font-bold text-brand-900 dark:text-white text-lg">Order Summary</h3>
+                        <div class="space-y-4 max-h-60 overflow-y-auto pr-2">
+                            ${cart.map(item => `
+                                <div class="flex items-center justify-between text-sm">
+                                    <div class="flex items-center space-x-3"><img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded-xl object-cover bg-gray-100 dark:bg-gray-900"><div><p class="font-semibold text-brand-900 dark:text-white line-clamp-1">${item.name}</p><p class="text-xs text-gray-500">Qty: ${item.quantity}</p></div></div>
+                                    <span class="font-semibold text-brand-900 dark:text-white">$${(item.price * item.quantity).toFixed(2)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800 pt-6">
+                            <div class="flex justify-between"><span>Subtotal</span><span class="font-semibold text-brand-900 dark:text-white">$${subtotal.toFixed(2)}</span></div>
+                            <div class="flex justify-between"><span>Shipping</span><span class="font-semibold text-brand-900 dark:text-white">$${shipping.toFixed(2)}</span></div>
+                        </div>
+                        <div class="flex justify-between text-base font-bold text-brand-900 dark:text-white border-t border-gray-200 dark:border-gray-800 pt-4">
+                            <span class="text-lg">Total</span><span class="text-2xl text-brand-accent">$${total.toFixed(2)}</span>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-accent hover:bg-brand-accentHover text-white py-4 rounded-2xl font-semibold text-base transition shadow-lg text-center">Place Order Now</button>
+                    </div>
+                </form>
+            `;
+        });
+    </script>
+</body>
+</html>

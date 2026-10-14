@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Access | Aetheria Luxury Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { 50: '#f4f6f8', 100: '#e1e7ec', 500: '#0f172a', 650: '#1e293b', 900: '#020617', accent: '#d97706', accentHover: '#b45309' } } } } }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+    <header class="sticky top-0 z-40 glass-nav border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-900 to-brand-accent flex items-center justify-center text-white shadow-lg"><i class="fa-solid fa-gem text-lg"></i></div>
+                <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-brand-900 to-brand-accent dark:from-white dark:to-brand-accent bg-clip-text text-transparent">AETHERIA</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"><i id="theme-icon" class="fa-solid fa-moon text-lg"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow animate-fade-in max-w-md mx-auto px-4 py-16 w-full">
+        <div class="bg-white dark:bg-brand-950 p-8 sm:p-10 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-xl space-y-8">
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 rounded-2xl bg-brand-accent text-white flex items-center justify-center text-xl mx-auto shadow-md"><i class="fa-solid fa-gem"></i></div>
+                <h1 class="text-2xl font-bold text-brand-900 dark:text-white" id="auth-title">Welcome Back</h1>
+                <p class="text-sm text-gray-500" id="auth-subtitle">Sign in to access your saved wishlist and orders</p>
+            </div>
+            <div class="flex bg-gray-100 dark:bg-gray-900 p-1.5 rounded-2xl text-sm font-semibold">
+                <button id="tab-login" onclick="switchAuthTab('login')" class="flex-1 py-2.5 rounded-xl transition bg-white dark:bg-brand-950 text-brand-900 dark:text-white shadow-sm">Login</button>
+                <button id="tab-signup" onclick="switchAuthTab('signup')" class="flex-1 py-2.5 rounded-xl transition text-gray-500 hover:text-brand-900 dark:hover:text-white">Sign Up</button>
+            </div>
+            <form onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div id="signup-name-field" class="hidden">
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Full Name</label>
+                    <input type="text" id="auth-name" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Email Address</label>
+                    <input type="email" id="auth-email" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-2">Password</label>
+                    <input type="password" id="auth-password" required class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-brand-accent">
+                </div>
+                <button type="submit" id="auth-submit-btn" class="w-full bg-brand-accent hover:bg-brand-accentHover text-white py-4 rounded-2xl font-semibold text-base transition shadow-lg mt-2">Sign In</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-white dark:bg-brand-950 border-t border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs flex justify-between">
+            <p>&copy; 2026 Aetheria Luxury Lifestyle Inc.</p>
+            <a href="index.html">Home</a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        let isSignup = false;
+        function switchAuthTab(mode) {
+            isSignup = (mode === 'signup');
+            const tabLogin = document.getElementById('tab-login');
+            const tabSignup = document.getElementById('tab-signup');
+            const title = document.getElementById('auth-title');
+            const subtitle = document.getElementById('auth-subtitle');
+            const nameField = document.getElementById('signup-name-field');
+            const submitBtn = document.getElementById('auth-submit-btn');
+
+            if (isSignup) {
+                tabSignup.className = 'flex-1 py-2.5 rounded-xl transition bg-white dark:bg-brand-950 text-brand-900 dark:text-white shadow-sm';
+                tabLogin.className = 'flex-1 py-2.5 rounded-xl transition text-gray-500 hover:text-brand-900';
+                title.innerText = 'Create Account';
+                subtitle.innerText = 'Join Aetheria to enjoy personalized luxury curation';
+                nameField.classList.remove('hidden');
+                document.getElementById('auth-name').setAttribute('required', 'true');
+                submitBtn.innerText = 'Create Account';
+            } else {
+                tabLogin.className = 'flex-1 py-2.5 rounded-xl transition bg-white dark:bg-brand-950 text-brand-900 dark:text-white shadow-sm';
+                tabSignup.className = 'flex-1 py-2.5 rounded-xl transition text-gray-500 hover:text-brand-900';
+                title.innerText = 'Welcome Back';
+                subtitle.innerText = 'Sign in to access your saved wishlist and orders';
+                nameField.classList.add('hidden');
+                document.getElementById('auth-name').removeAttribute('required');
+                submitBtn.innerText = 'Sign In';
+            }
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const name = isSignup ? document.getElementById('auth-name').value : email.split('@')[0];
+
+            currentUser = { name, email };
+            localStorage.setItem('aetheria_user', JSON.stringify(currentUser));
+            updateCartBadge();
+            showToast(isSignup ? `Account created successfully. Welcome, ${name}!` : `Welcome back, ${name}!`, 'success');
+            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+        }
+    </script>
+</body>
+</html>

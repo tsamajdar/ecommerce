@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheria | World-Class Luxury & Lifestyle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { 50: '#f4f6f8', 100: '#e1e7ec', 500: '#0f172a', 650: '#1e293b', 900: '#020617', accent: '#d97706', accentHover: '#b45309' } } } } }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+    <header class="sticky top-0 z-40 glass-nav border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-900 to-brand-accent flex items-center justify-center text-white shadow-lg"><i class="fa-solid fa-gem text-lg"></i></div>
+                <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-brand-900 to-brand-accent dark:from-white dark:to-brand-accent bg-clip-text text-transparent">AETHERIA</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="index.html" class="text-brand-accent font-semibold py-2">Home</a>
+                <a href="products.html" class="hover:text-brand-accent transition py-2">Products</a>
+                <a href="about.html" class="hover:text-brand-accent transition py-2">About Us</a>
+                <a href="contact.html" class="hover:text-brand-accent transition py-2">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"><i id="theme-icon" class="fa-solid fa-moon text-lg"></i></button>
+                <a href="cart.html" class="relative p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"><i class="fa-solid fa-bag-shopping text-lg"></i><span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-accent text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center scale-0 transition-transform">0</span></a>
+                <a href="login.html" class="hidden sm:flex items-center space-x-2 bg-brand-900 text-white dark:bg-gray-800 hover:bg-brand-accent px-4 py-2.5 rounded-xl font-medium text-sm transition"><i class="fa-regular fa-user"></i><span id="nav-user-label">Account</span></a>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800"><i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-brand-900/95 backdrop-blur-md px-4 pt-4 pb-6 space-y-3">
+            <a href="index.html" class="block px-4 py-2.5 rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
+            <a href="products.html" class="block px-4 py-2.5 rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Products</a>
+            <a href="about.html" class="block px-4 py-2.5 rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-800">About Us</a>
+            <a href="contact.html" class="block px-4 py-2.5 rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
+            <a href="login.html" class="block px-4 py-2.5 rounded-lg font-medium bg-brand-accent text-white rounded-xl text-center">Login / Signup</a>
+        </div>
+    </header>
+
+    <main class="flex-grow animate-fade-in space-y-20 pb-20">
+        <section class="relative bg-gradient-to-br from-brand-900 via-brand-650 to-brand-950 text-white py-24 sm:py-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl space-y-8">
+                    <span class="inline-flex items-center space-x-2 bg-brand-accent/20 border border-brand-accent/40 text-amber-400 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">New Autumn Collection 2026</span>
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">Redefining Luxury & <span class="bg-gradient-to-r from-amber-400 to-amber-200 bg-clip-text text-transparent">Modern Lifestyle</span></h1>
+                    <p class="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl">Discover our meticulously curated selection of world-class artisanal timepieces, state-of-the-art audio gear, and timeless wardrobe essentials.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5 pt-4">
+                        <a href="products.html" class="bg-brand-accent hover:bg-brand-accentHover text-white px-8 py-4 rounded-2xl font-semibold text-base transition shadow-lg text-center">Explore Collection</a>
+                        <a href="about.html" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold text-base transition text-center backdrop-blur-md">Our Heritage</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="bg-white dark:bg-brand-950 p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm flex items-start space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-brand-accent flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-globe"></i></div>
+                    <div><h3 class="font-semibold text-brand-900 dark:text-white mb-1">Global Express Shipping</h3><p class="text-sm text-gray-500">Insured express delivery worldwide.</p></div>
+                </div>
+                <div class="bg-white dark:bg-brand-950 p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm flex items-start space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-brand-accent flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div><h3 class="font-semibold text-brand-900 dark:text-white mb-1">Authenticity Guaranteed</h3><p class="text-sm text-gray-500">Certified artisanal craftsmanship.</p></div>
+                </div>
+                <div class="bg-white dark:bg-brand-950 p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm flex items-start space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-brand-accent flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-rotate-left"></i></div>
+                    <div><h3 class="font-semibold text-brand-900 dark:text-white mb-1">Hassle-Free Returns</h3><p class="text-sm text-gray-500">30-day return policy.</p></div>
+                </div>
+                <div class="bg-white dark:bg-brand-950 p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm flex items-start space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-brand-accent flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-headset"></i></div>
+                    <div><h3 class="font-semibold text-brand-900 dark:text-white mb-1">24/7 Concierge</h3><p class="text-sm text-gray-500">Dedicated luxury styling support.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-end justify-between mb-12">
+                <div><span class="text-brand-accent font-semibold text-sm uppercase tracking-wider">Curated Selection</span><h2 class="text-3xl font-bold text-brand-900 dark:text-white mt-1">Featured Masterpieces</h2></div>
+                <a href="products.html" class="text-sm font-semibold text-brand-accent hover:underline flex items-center space-x-2"><span>View All Products</span><i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Dynamically rendered first 4 featured items -->
+                <script>
+                    document.write(productsData.slice(0, 4).map(p => `
+                        <div class="bg-white dark:bg-brand-950 rounded-3xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm hover:shadow-xl transition group flex flex-col justify-between">
+                            <div>
+                                <div class="relative overflow-hidden bg-gray-100 dark:bg-gray-900 aspect-square cursor-pointer" onclick="window.location.href='product.html?id=${p.id}'">
+                                    <span class="absolute top-4 left-4 z-10 bg-brand-900/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full">${p.badge}</span>
+                                    <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center justify-between text-xs text-gray-500 mb-2"><span>${p.category}</span><div class="flex items-center text-amber-500"><i class="fa-solid fa-star mr-1"></i><span class="font-semibold text-brand-900 dark:text-white">${p.rating}</span></div></div>
+                                    <h3 class="font-semibold text-brand-900 dark:text-white text-base mb-2 cursor-pointer hover:text-brand-accent" onclick="window.location.href='product.html?id=${p.id}'">${p.name}</h3>
+                                    <p class="text-lg font-bold text-brand-accent">$${p.price.toFixed(2)}</p>
+                                </div>
+                            </div>
+                            <div class="px-6 pb-6 pt-0">
+                                <button onclick="addToCart(${p.id})" class="w-full bg-brand-900 dark:bg-gray-800 text-white hover:bg-brand-accent py-3 rounded-xl font-medium text-sm transition shadow-sm flex items-center justify-center space-x-2">
+                                    <i class="fa-solid fa-bag-shopping"></i><span>Add to Bag</span>
+                                </button>
+                            </div>
+                        </div>
+                    `).join(''));
+                </script>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white dark:bg-brand-950 border-t border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3"><div class="w-8 h-8 rounded-lg bg-brand-accent flex items-center justify-center text-white"><i class="fa-solid fa-gem text-sm"></i></div><span class="text-xl font-bold tracking-tight text-brand-900 dark:text-white">AETHERIA</span></div>
+                <p class="text-sm leading-relaxed">Curating world-class artisanal goods, luxury timepieces, and lifestyle essentials.</p>
+            </div>
+            <div>
+                <h4 class="text-brand-900 dark:text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
+                <ul class="space-y-2.5 text-sm">
+                    <li><a href="index.html" class="hover:text-brand-accent">Home</a></li>
+                    <li><a href="products.html" class="hover:text-brand-accent">Explore Catalog</a></li>
+                    <li><a href="about.html" class="hover:text-brand-accent">Our Heritage</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-accent">Get in Touch</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-brand-900 dark:text-white font-semibold mb-4 text-sm uppercase tracking-wider">Customer Care</h4>
+                <ul class="space-y-2.5 text-sm">
+                    <li><a href="#" class="hover:text-brand-accent">Shipping & Delivery</a></li>
+                    <li><a href="#" class="hover:text-brand-accent">Returns & Exchanges</a></li>
+                    <li><a href="#" class="hover:text-brand-accent">Secure Payments</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-brand-900 dark:text-white font-semibold mb-4 text-sm uppercase tracking-wider">Newsletter</h4>
+                <form onsubmit="event.preventDefault(); showToast('Subscribed successfully!'); event.target.reset();" class="flex flex-col space-y-2">
+                    <input type="email" placeholder="Enter your email" required class="bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-brand-accent">
+                    <button type="submit" class="bg-brand-900 dark:bg-gray-800 text-white hover:bg-brand-accent py-2.5 rounded-xl text-sm font-medium transition">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-200 dark:border-gray-800 pt-8 text-xs flex justify-between">
+            <p>&copy; 2026 Aetheria Luxury Lifestyle Inc. All rights reserved.</p>
+            <div class="flex space-x-6"><a href="#" class="hover:text-brand-accent">Terms</a><a href="#" class="hover:text-brand-accent">Privacy</a></div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog | Aetheria Luxury Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { 50: '#f4f6f8', 100: '#e1e7ec', 500: '#0f172a', 650: '#1e293b', 900: '#020617', accent: '#d97706', accentHover: '#b45309' } } } } }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+    <header class="sticky top-0 z-40 glass-nav border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-900 to-brand-accent flex items-center justify-center text-white shadow-lg"><i class="fa-solid fa-gem text-lg"></i></div>
+                <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-brand-900 to-brand-accent dark:from-white dark:to-brand-accent bg-clip-text text-transparent">AETHERIA</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="index.html" class="hover:text-brand-accent transition py-2">Home</a>
+                <a href="products.html" class="text-brand-accent font-semibold py-2">Products</a>
+                <a href="about.html" class="hover:text-brand-accent transition py-2">About Us</a>
+                <a href="contact.html" class="hover:text-brand-accent transition py-2">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"><i id="theme-icon" class="fa-solid fa-moon text-lg"></i></button>
+                <a href="cart.html" class="relative p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition"><i class="fa-solid fa-bag-shopping text-lg"></i><span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-accent text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center scale-0 transition-transform">0</span></a>
+                <a href="login.html" class="hidden sm:flex items-center space-x-2 bg-brand-900 text-white dark:bg-gray-800 hover:bg-brand-accent px-4 py-2.5 rounded-xl font-medium text-sm transition"><i class="fa-regular fa-user"></i><span id="nav-user-label">Account</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow animate-fade-in max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 w-full">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-gray-200 dark:border-gray-800 pb-8">
+            <div>
+                <span class="text-brand-accent font-semibold text-sm uppercase tracking-wider">Catalog</span>
+                <h1 class="text-3xl font-bold text-brand-900 dark:text-white mt-1">Explore All Products</h1>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="search-input" oninput="renderFilteredProducts()" placeholder="Search products..." class="bg-white dark:bg-brand-950 border border-gray-300 dark:border-gray-700 pl-11 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-brand-accent w-64 shadow-sm">
+                </div>
+                <select id="sort-select" onchange="renderFilteredProducts()" class="bg-white dark:bg-brand-950 border border-gray-300 dark:border-gray-700 px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-brand-accent shadow-sm">
+                    <option value="featured">Sort by: Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="space-y-6">
+                <div class="bg-white dark:bg-brand-950 p-6 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm space-y-6">
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base">Categories</h3>
+                    <div id="category-filters" class="space-y-2">
+                        <button onclick="setCategory('all')" id="cat-all" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition bg-brand-accent text-white shadow-md">All Categories</button>
+                        <button onclick="setCategory('Accessories')" id="cat-Accessories" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-600 dark:text-gray-400">Accessories</button>
+                        <button onclick="setCategory('Electronics')" id="cat-Electronics" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-600 dark:text-gray-400">Electronics</button>
+                        <button onclick="setCategory('Fashion')" id="cat-Fashion" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-600 dark:text-gray-400">Fashion</button>
+                        <button onclick="setCategory('Home')" id="cat-Home" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-600 dark:text-gray-400">Home</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3">
+                <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                <div id="no-products-msg" class="hidden text-center py-20 bg-white dark:bg-brand-950 rounded-3xl border border-gray-200 dark:border-gray-800">
+                    <i class="fa-solid fa-box-open text-4xl text-gray-400 mb-4"></i>
+                    <h3 class="font-bold text-lg text-brand-900 dark:text-white">No products found</h3>
+                    <p class="text-sm text-gray-500 mt-1">Try adjusting your search or filter criteria.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white dark:bg-brand-950 border-t border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 pt-16 pb-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs flex justify-between">
+            <p>&copy; 2026 Aetheria Luxury Lifestyle Inc.</p>
+            <div class="flex space-x-6"><a href="index.html">Home</a><a href="contact.html">Support</a></div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        let selectedCategory = 'all';
+        function setCategory(cat) {
+            selectedCategory = cat;
+            document.querySelectorAll('#category-filters button').forEach(b => {
+                b.className = 'w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-600 dark:text-gray-400';
+            });
+            document.getElementById(`cat-${cat}`).className = 'w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition bg-brand-accent text-white shadow-md';
+            renderFilteredProducts();
+        }
+
+        function renderFilteredProducts() {
+            const search = document.getElementById('search-input').value.toLowerCase();
+            const sort = document.getElementById('sort-select').value;
+            const grid = document.getElementById('products-grid');
+            const msg = document.getElementById('no-products-msg');
+
+            let list = [...productsData];
+            if (selectedCategory !== 'all') list = list.filter(p => p.category === selectedCategory);
+            if (search.trim() !== '') list = list.filter(p => p.name.toLowerCase().includes(search) || p.description.toLowerCase().includes(search));
+
+            if (sort === 'price-low') list.sort((a,b) => a.price - b.price);
+            else if (sort === 'price-high') list.sort((a,b) => b.price - a.price);
+            else if (sort === 'rating') list.sort((a,b) => b.rating - a.rating);
+
+            if (list.length === 0) {
+                grid.innerHTML = '';
+                msg.classList.remove('hidden');
+            } else {
+                msg.classList.add('hidden');
+                grid.innerHTML = list.map(p => `
+                    <div class="bg-white dark:bg-brand-950 rounded-3xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm hover:shadow-xl transition group flex flex-col justify-between">
+                        <div>
+                            <div class="relative overflow-hidden bg-gray-100 dark:bg-gray-900 aspect-square cursor-pointer" onclick="window.location.href='product.html?id=${p.id}'">
+                                <span class="absolute top-4 left-4 z-10 bg-brand-900/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full">${p.badge}</span>
+                                <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between text-xs text-gray-500 mb-2"><span>${p.category}</span><div class="flex items-center text-amber-500"><i class="fa-solid fa-star mr-1"></i><span class="font-semibold text-brand-900 dark:text-white">${p.rating}</span></div></div>
+                                <h3 class="font-semibold text-brand-900 dark:text-white text-base mb-2 cursor-pointer hover:text-brand-accent" onclick="window.location.href='product.html?id=${p.id}'">${p.name}</h3>
+                                <p class="text-lg font-bold text-brand-accent">$${p.price.toFixed(2)}</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <button onclick="addToCart(${p.id})" class="w-full bg-brand-900 dark:bg-gray-800 text-white hover:bg-brand-accent py-3 rounded-xl font-medium text-sm transition shadow-sm flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-bag-shopping"></i><span>Add to Bag</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', renderFilteredProducts);
+    </script>
+</body>
+</html>
